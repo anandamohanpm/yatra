@@ -39,7 +39,7 @@
 
             stage('Sonarqube Code Analysis') {
                 environment {
-                    scannerHome = tool 'SonarQubeScanner'
+                    scannerHome = tool 'sonar-server'
                 }
                 steps {
                     withSonarQubeEnv('qube') {
