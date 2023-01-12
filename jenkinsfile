@@ -37,11 +37,11 @@
                  }
              }
 
-            stage('Sonarqube Code Analysis') {
+       /**     stage('Sonarqube Code Analysis') {
                 environment {
                     scannerHome = tool 'sonar-server'
                 }
-                steps {
+            /**    steps {
                     withSonarQubeEnv('qube') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
@@ -49,7 +49,15 @@
                         waitForQualityGate abortPipeline: true
                     }
                 }
-            }
+            }**/
+
+
+             stage('Sonar Qube Analysis') {
+                 steps {
+                     echo 'verify'
+                     sh 'mvn clean verify sonar:sonar'
+                 }
+             }
 
              stage('Code Package') {
                  steps {
