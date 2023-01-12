@@ -37,20 +37,21 @@
                  }
              }
 
-             stage('Sonarqube Code Analysis') {
-                def M2_HOME = tool name: 'maven', type: 'maven'
-                withSonarQubeEnv('qube'){
-                  sh '${M2_HOME}/bin/mvn sonar:sonar'
-                }
+             stage('Sonarqube') {
+                 environment {
+                     scannerHome = tool 'SonarQube 4.8.0.2856'
+                 }
+                 steps {
+                     withSonarQubeEnv('qube') {
+                         sh "${scannerHome}/bin/sonar-scanner"
+                     }
+                     timeout(time: 10, unit: 'MINUTES') {
+                         waitForQualityGate abortPipeline: true
+                     }
+                 }
              }
 
 
-        /**     stage('Sonar Qube Analysis') {
-                 steps {
-                     echo 'verify'
-                     sh 'mvn clean verify sonar:sonar'
-                 }
-             }**/
 
              stage('Code Package') {
                  steps {
