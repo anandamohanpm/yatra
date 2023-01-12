@@ -37,27 +37,27 @@
                  }
              }
 
-       /**     stage('Sonarqube Code Analysis') {
+             stage('Sonarqube Code Analysis') {
                 environment {
-                    scannerHome = tool 'sonar-server'
+                    scannerHome = tool 'qube'
                 }
-            /**    steps {
-                    withSonarQubeEnv('qube') {
+                  steps {
+                    withSonarQubeEnv('sonar-server') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                     timeout(time: 10, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: true
                     }
-                }
-            }**/
+                  }
+             }
 
 
-             stage('Sonar Qube Analysis') {
+        /**     stage('Sonar Qube Analysis') {
                  steps {
                      echo 'verify'
                      sh 'mvn clean verify sonar:sonar'
                  }
-             }
+             }**/
 
              stage('Code Package') {
                  steps {
