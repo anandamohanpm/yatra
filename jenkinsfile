@@ -39,7 +39,7 @@
 
              stage('Sonarqube') {
                  environment {
-                     scannerHome = tool 'SonarQube 4.8.0.2856'
+                     scannerHome = tool 'sonar-server'
                  }
                  steps {
                      withSonarQubeEnv('qube') {
