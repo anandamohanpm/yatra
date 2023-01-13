@@ -37,7 +37,7 @@
                  }
              }
 
-             stage('Sonarqube') {
+             stage('Sonarqube Analysis') {
                  environment {
                      scannerHome = tool 'qube'
                  }
@@ -86,7 +86,7 @@
              }
 
 
-             stage(' Docker Image Push to Amazon ECR') {
+     /**        stage(' Docker Image Push to Amazon ECR') {
                 steps {
                    script {
                       withDockerRegistry([credentialsId:'ecr:ap-south-1:ecr-credentials', url:"https://616909931806.dkr.ecr.ap-south-1.amazonaws.com"]){
@@ -103,7 +103,7 @@
                       }
                    }
                 }
-             }
+             } **/
 
 
              stage('Upload the docker Image to Nexus') {
